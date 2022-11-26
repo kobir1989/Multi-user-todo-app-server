@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const User = require("./User")
 
 const todoSchema = Schema(
   {
@@ -10,9 +11,14 @@ const todoSchema = Schema(
       type: String,
       require: true,
     },
+    user:{
+      type: Schema.Types.ObjectId,
+      require:true,
+      ref: User,
+    }
   },
   {
-    timeStamps: true,
+    timestamps: true,
   }
 );
 

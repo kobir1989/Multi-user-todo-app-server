@@ -19,7 +19,7 @@ const UserSchema = Schema(
     },
   },
   {
-    timeStamps: true,
+    timestamps: true,
   }
 );
 
