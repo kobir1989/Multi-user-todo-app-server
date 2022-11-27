@@ -50,6 +50,7 @@ router.delete("/todos/:id", async (req, res) => {
 //Todo PUT endpoint
 router.put("/todos/:id", async (req, res) => {
   const { title, todo } = req.body;
+  console.log("PUT",title, todo)
   const { id } = req.params;
   try {
     if (!(title && todo)) {
