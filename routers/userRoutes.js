@@ -75,7 +75,7 @@ router.get("/loggedIn", (req, res) => {
   try {
     const token = req.cookies;
     if (!token) {
-      res.status(401).json({ errorMessage: "Unauthorized" });
+     return res.status(401).json({ errorMessage: "Unauthorized" });
     }
     const validateUser = jwt.verify(token, process.env.JWT_SEC);
     res.json(validateUser, { id: validateUser.id, user: validateUser.name });
