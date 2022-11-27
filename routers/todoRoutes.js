@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const Todo = require("../model/Todo");
+const auth = require("../middleware/auth");
 
 //Todo GET endpoint
-router.get("/todos", async (req, res) => {
+router.get("/todos", auth, async (req, res) => {
   try {
     const allTodos = await Todo.find();
     res.status(200).json(allTodos);
@@ -12,7 +13,7 @@ router.get("/todos", async (req, res) => {
 });
 
 //Todo POST endpoint
-router.post("/todos", async (req, res) => {
+router.post("/todos", auth, async (req, res) => {
   const { title, todo } = req.body;
   console.log(req.user);
   try {
@@ -33,7 +34,7 @@ router.post("/todos", async (req, res) => {
 });
 
 //Todo DELETE endpoint
-router.delete("/todos/:id", async (req, res) => {
+router.delete("/todos/:id", auth, async (req, res) => {
   const { id } = req.params;
   try {
     const findTodo = await Todo.findOne({ id });
@@ -48,9 +49,9 @@ router.delete("/todos/:id", async (req, res) => {
 });
 
 //Todo PUT endpoint
-router.put("/todos/:id", async (req, res) => {
+router.put("/todos/:id", auth, async (req, res) => {
   const { title, todo } = req.body;
-  console.log("PUT",title, todo)
+  console.log("PUT", title, todo);
   const { id } = req.params;
   try {
     if (!(title && todo)) {
@@ -66,7 +67,7 @@ router.put("/todos/:id", async (req, res) => {
     res.status(200).json(updatedTodo);
   } catch (error) {
     res.status(500).json({ errorMessage: "Something went wrong" });
-    console.log(error)
+    console.log(error);
   }
 });
 
