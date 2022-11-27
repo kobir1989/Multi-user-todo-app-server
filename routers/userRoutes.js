@@ -71,14 +71,14 @@ router.post("/login", async (req, res) => {
 
 //LoggedIn endpoint
 router.get("/loggedIn", (req, res) => {
-  console.log(req.cookies);
   try {
-    const token = req.cookies;
+    const token = req.cookies.token;
+    console.log(token);
     if (!token) {
-     return res.status(401).json({ errorMessage: "Unauthorized" });
+      return res.status(401).json({ errorMessage: "Unauthorized" });
     }
     const validateUser = jwt.verify(token, process.env.JWT_SEC);
-    res.json(validateUser, { id: validateUser.id, user: validateUser.name });
+    res.json({ id: validateUser.id, user: validateUser.name });
   } catch (error) {
     res.status(500).json({ errorMessage: "Something went wrong" });
   }
