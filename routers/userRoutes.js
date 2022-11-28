@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 //Signup EndPoint
 router.post("/signup", async (req, res) => {
   const { name, email, password, confirmPassword } = req.body;
-  console.log(name, email, password, confirmPassword);
   try {
     if (!(name && email && password && confirmPassword)) {
       return res.status(400).json({ errorMessage: "All the fields are required" });
@@ -65,7 +64,6 @@ router.post("/login", async (req, res) => {
     res.cookie("token", token, { httpOnly: true }).send();
   } catch (error) {
     res.status(500).json({ errorMessage: "Something went wrong" });
-    console.log(error);
   }
 });
 
@@ -73,7 +71,6 @@ router.post("/login", async (req, res) => {
 router.get("/loggedIn", (req, res) => {
   try {
     const token = req.cookies.token;
-    console.log(token);
     if (!token) {
       return res.status(401).json({ errorMessage: "Unauthorized" });
     }

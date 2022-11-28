@@ -5,7 +5,7 @@ const auth = require("../middleware/auth");
 //Todo GET endpoint
 router.get("/todos", auth, async (req, res) => {
   try {
-    const allTodos = await Todo.find();
+    const allTodos = await Todo.find({user:req.user});
     res.status(200).json(allTodos);
   } catch (error) {
     res.status(500).json({ errorMessage: "Something went wrong" });
@@ -15,7 +15,6 @@ router.get("/todos", auth, async (req, res) => {
 //Todo POST endpoint
 router.post("/todos", auth, async (req, res) => {
   const { title, todo } = req.body;
-  console.log(req.user);
   try {
     if (!(title && todo)) {
       return res.status(400).json({ errorMessage: "All the feilds are required" });
@@ -51,7 +50,6 @@ router.delete("/todos/:id", auth, async (req, res) => {
 //Todo PUT endpoint
 router.put("/todos/:id", auth, async (req, res) => {
   const { title, todo } = req.body;
-  console.log("PUT", title, todo);
   const { id } = req.params;
   try {
     if (!(title && todo)) {
@@ -67,7 +65,6 @@ router.put("/todos/:id", auth, async (req, res) => {
     res.status(200).json(updatedTodo);
   } catch (error) {
     res.status(500).json({ errorMessage: "Something went wrong" });
-    console.log(error);
   }
 });
 
