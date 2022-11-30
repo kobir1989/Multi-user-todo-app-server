@@ -8,7 +8,7 @@ const todoRouter = require("./routers/todoRoutes");
 
 app.use(
   cors({
-    origin: "https://multi-user-todo-app-client.vercel.app/",
+    origin: "https://multi-user-todo-app-client.vercel.app",
     credentials: true,
   })
 );
