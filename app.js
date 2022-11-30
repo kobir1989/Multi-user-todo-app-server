@@ -8,7 +8,7 @@ const todoRouter = require("./routers/todoRoutes");
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://multi-user-todo-app-server-production.up.railway.app/",
     credentials: true,
   })
 );
