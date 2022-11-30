@@ -5,7 +5,7 @@ const auth = require("../middleware/auth");
 //Todo GET endpoint
 router.get("/todos", auth, async (req, res) => {
   try {
-    const allTodos = await Todo.find({user:req.user});
+    const allTodos = await Todo.find({ user: req.user });
     res.status(200).json(allTodos);
   } catch (error) {
     res.status(500).json({ errorMessage: "Something went wrong" });

@@ -30,7 +30,7 @@ router.post("/signup", async (req, res) => {
       name: newUser.name,
     };
     const token = jwt.sign(jwtData, process.env.JWT_SEC);
-    res.cookie("token", token, { httpOnly: true }).send();
+    res.cookie("token", token, { ttpOnly: true, sameSite:"none", secure: true }).send();
   } catch (error) {
     res.status(500).json({ errorMessage: "Something went wrong" });
     console.log(error);
@@ -61,7 +61,7 @@ router.post("/login", async (req, res) => {
       },
       process.env.JWT_SEC
     );
-    res.cookie("token", token, { httpOnly: true }).send();
+    res.cookie("token", token, { httpOnly: true, sameSite:"none", secure: true }).send();
   } catch (error) {
     res.status(500).json({ errorMessage: "Something went wrong" });
   }
