@@ -84,7 +84,7 @@ router.get("/loggedIn", (req, res) => {
 //Logout endpoint
 router.get("/logout", (req, res) => {
   try {
-    res.clearCookie("token").send();
+    res.cookie("token", "", {sameSite: "none", secure: true, httpOnly:true, expires: new Date(0)}).send();
   } catch (error) {
     res.send(null);
   }
