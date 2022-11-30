@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-app.use("/auth", userRouter);
-app.use("/api", todoRouter);
+app.use("https://multi-user-todo-app-server-production.up.railway.app/auth", userRouter);
+app.use("https://multi-user-todo-app-server-production.up.railway.app/api", todoRouter);
 
 module.exports = app;
