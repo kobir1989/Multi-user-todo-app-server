@@ -8,7 +8,7 @@ const todoRouter = require("./routers/todoRoutes");
 
 app.use(
   cors({
-    origin: "https://multi-user-todo-app-server-production.up.railway.app/",
+    origin: "https://multi-user-todo-app-client-git-master-kobir1989.vercel.ap",
     credentials: true,
   })
 );
